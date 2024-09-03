@@ -1,0 +1,28 @@
+name: Build Windows
+
+on:
+  push:
+    branches:
+      - devel
+  pull_request:
+    branches:
+      - devel
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 'stable'
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Build for Windows
+      run: flutter build windows
