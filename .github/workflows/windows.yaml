@@ -32,5 +32,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: flutter-windows-build-latest
-        path: build/windows
+        path: build/windows/x64/runner
         if-no-files-found: error
