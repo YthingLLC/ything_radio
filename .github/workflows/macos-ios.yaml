@@ -1,0 +1,36 @@
+name: Build MacOS (iOS not enabled)
+
+on:
+  push:
+    branches:
+      - devel
+  pull_request:
+    branches:
+      - devel
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        flutter-version: '3.24.1'
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Build for MacOS
+      run: flutter build macos
+
+    - name: Gather macos artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: flutter-macos-build-latest
+        path: build/macos/Build
+        if-no-files-found: error

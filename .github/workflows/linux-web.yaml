@@ -1,0 +1,56 @@
+name: Build Linux, Android and Web
+
+on:
+  push:
+    branches:
+      - devel
+  pull_request:
+    branches:
+      - devel
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Install Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        channel: 'stable'
+        flutter-version: '3.24.1'
+
+    - name: Install dependencies
+      run: flutter pub get
+
+    - name: Build for Linux
+      run: flutter build linux
+
+    - name: Build for Android
+      run: flutter build appbundle
+
+    - name: Build for web
+      run: flutter build web
+
+    - name: Gather linux artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: flutter-linux-build-latest
+        path: build/linux
+        if-no-files-found: error
+
+    - name: Gather android artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: flutter-android-build-latest
+        path: build/app/outputs/bundle
+        if-no-files-found: error
+
+    - name: Gather web artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: flutter-web-build-latest
+        path: build/web
+        if-no-files-found: error
