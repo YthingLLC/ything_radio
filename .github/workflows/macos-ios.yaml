@@ -1,4 +1,4 @@
-name: Build MacOS (iOS not enabled)
+name: Build MacOS and iOS
 
 on:
   push:
@@ -28,9 +28,20 @@ jobs:
     - name: Build for MacOS
       run: flutter build macos
 
+    - name: Build for iOS
+      run: flutter build ios --release --no-codesign
+
+
     - name: Gather macos artifacts
       uses: actions/upload-artifact@v4
       with:
         name: flutter-macos-build-latest
-        path: build/macos/Build
+        path: build/macos/Build/Products
+        if-no-files-found: error
+
+    - name: Gather ios artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: flutter-ios-build-latest
+        path: build/ios/iphoneos
         if-no-files-found: error
