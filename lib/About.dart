@@ -5,8 +5,9 @@ class About extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text("About Page"),
+    return const Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Text("About"),
     );
   }
 }
