@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:ything_radio/About.dart';
 import 'package:ything_radio/EasyTab.dart';
+import 'package:ything_radio/Links.dart';
+import 'package:ything_radio/Listen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key, required this.title});
@@ -7,9 +10,9 @@ class HomePage extends StatelessWidget {
   final String title;
 
   final List<EasyTab> easytabs = const [
-    EasyTab(title: "Listen", icon: Icons.play_arrow, child: Placeholder()),
-    EasyTab(title: "About", icon: Icons.help, child: Placeholder()),
-    EasyTab(title: "Links", icon: Icons.language, child: Placeholder()),
+    EasyTab(title: "Listen", icon: Icons.play_arrow, child: Listen()),
+    EasyTab(title: "About", icon: Icons.help, child: About()),
+    EasyTab(title: "Links", icon: Icons.language, child: Links()),
   ];
 
   @override
