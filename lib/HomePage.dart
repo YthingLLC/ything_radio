@@ -12,10 +12,19 @@ class HomePage extends StatelessWidget {
         child: Scaffold(
           bottomNavigationBar: BottomAppBar(
             color: Theme.of(context).colorScheme.inversePrimary,
-            child: TabBar(tabs: [
-              Placeholder(),
-              Placeholder(),
-              Placeholder(),
+            child: const TabBar(tabs: [
+              Tab(
+                icon: Icon(Icons.play_arrow),
+                text: "Listen",
+              ),
+              Tab(
+                icon: Icon(Icons.web_asset),
+                text: "Website",
+              ),
+              Tab(
+                icon: Icon(Icons.language),
+                text: "Links",
+              )
             ]),
           ),
         ));
