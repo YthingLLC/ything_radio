@@ -7,13 +7,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-
-import 'package:ything_radio/main.dart';
+import 'package:ything_radio/YthingRadio.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const MyApp());
+    await tester.pumpWidget(const YthingRadio());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
