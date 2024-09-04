@@ -7,10 +7,17 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomAppBar(
-        color: Theme.of(context).colorScheme.inversePrimary,
-      ),
-    );
+    return DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          bottomNavigationBar: BottomAppBar(
+            color: Theme.of(context).colorScheme.inversePrimary,
+            child: TabBar(tabs: [
+              Placeholder(),
+              Placeholder(),
+              Placeholder(),
+            ]),
+          ),
+        ));
   }
 }
