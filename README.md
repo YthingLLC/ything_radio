@@ -1,16 +1,23 @@
 # ything_radio
 
-A simple internet streaming radio application
+An internet streaming radio application
 
-## Getting Started
+## About 
 
-This project is a starting point for a Flutter application.
+Ything Radio is an app that is intended to provide a demonstration of an internet radio streaming app.
+It is intended for use by internet radio stations to provide a dedicated app for their radio station.
+This app is not intended to be an app for generic usage for multiple radio stations, a discovery platform,
+or to facilitate user input for internet radio sites.
 
-A few resources to get you started if this is your first Flutter project:
+This app has been designed to run across all platforms!
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- Android
+- iOS
+- MacOS
+- Windows
+- Linux
+- Web
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Provide a single unified experience across *all* platforms for your users!
+
+Want to have us modify this app for you? Reach out to [info@ything.net](mailto:info@ything.net?subject=I want an app made)!
