@@ -20,4 +20,4 @@ This app has been designed to run across all platforms!
 
 Provide a single unified experience across *all* platforms for your users!
 
-Want to have us modify this app for you? Reach out to [info@ything.net](mailto:info@ything.net?subject=I want an app made)!
+Want to have us modify this app for you? Reach out to info@ything.app
