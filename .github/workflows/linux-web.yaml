@@ -40,7 +40,7 @@ jobs:
       run: flutter build appbundle
 
     - name: Build for web
-      run: flutter build web
+      run: flutter build web --no-web-resources-cdn --csp --web-renderer canvaskit
 
     - name: Gather linux artifacts
       uses: actions/upload-artifact@v4
