@@ -11,7 +11,10 @@ class YthingRadio extends StatelessWidget {
     return MaterialApp(
       title: 'Ything Radio',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.orange,
+          dynamicSchemeVariant: DynamicSchemeVariant.fidelity,
+        ),
         useMaterial3: true,
       ),
       home: const HomePage(title: 'Ything Radio'),
