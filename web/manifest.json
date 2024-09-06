@@ -1,6 +1,6 @@
 {
-    "name": "ything_radio",
-    "short_name": "ything_radio",
+    "name": "Ything Radio",
+    "short_name": "Radio",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
