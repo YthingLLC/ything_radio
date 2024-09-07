@@ -1,3 +1,4 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 
 class Listen extends StatelessWidget {
@@ -21,8 +22,36 @@ class PlayControls extends StatefulWidget {
 class _PlayControlsState extends State<PlayControls> {
   bool isPlaying = false;
 
+  late final AudioPlayer player;
+
+  @override
+  void initState() {
+    super.initState();
+
+    player = AudioPlayer();
+
+    player.setReleaseMode(ReleaseMode.release);
+
+    player
+        .setSourceUrl("https://generic.ything.app/music/separation-185196.mp3");
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    player.stop();
+
+    player.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (isPlaying) {
+      player.resume();
+    } else {
+      player.stop();
+    }
     return ClipOval(
       child: Material(
         color: Theme.of(context).colorScheme.primaryContainer,
