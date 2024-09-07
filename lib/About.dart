@@ -1,21 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:ything_radio/SafeZone.dart';
 
 class About extends StatelessWidget {
   const About({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final safeLeftPadding = MediaQuery.of(context).padding.left + 16;
-    final safeRightPadding = MediaQuery.of(context).padding.right + 16;
-    final safeBottomPadding = MediaQuery.of(context).padding.bottom;
-    final safeTopPadding = MediaQuery.of(context).padding.top;
-
-    return DefaultTextStyle(
-      style: Theme.of(context).textTheme.bodyLarge!,
-      child: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.only(left: safeLeftPadding, right: safeRightPadding, bottom: safeBottomPadding, top: safeTopPadding),
-          child: const Text(
+    return SafeZone(
+      child: DefaultTextStyle(
+        style: Theme.of(context).textTheme.bodyLarge!,
+        child: const SingleChildScrollView(
+          child: Text(
             'Ything Radio is an app that is intended to provide a demonstration of the '
             'open source ything_radio app. This app is used to provide the ability for the '
             '"look and feel" of the app to be tested on real devices for those wishing to '
