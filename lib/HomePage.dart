@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
 
   final List<EasyTab> easytabs = const [
     EasyTab(title: "Listen", icon: Icons.play_arrow, child: Listen()),
-    EasyTab(title: "About", icon: Icons.help, child: About()),
+    EasyTab(title: "About", icon: Icons.info, child: About()),
     EasyTab(title: "Links", icon: Icons.language, child: Links()),
   ];
 
