@@ -1,5 +1,6 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:audioplayers/audioplayers.dart';
+import 'package:ything_radio/Globals.dart';
 
 class ListenHandler extends BaseAudioHandler {
   final _player = AudioPlayer();
@@ -16,11 +17,18 @@ class ListenHandler extends BaseAudioHandler {
   }
 
   @override
-  Future<void> play() => _player.resume();
+  Future<void> play() async {
+    if (await startAudioSession()) {
+      _player.resume();
+    }
+  }
 
   @override
-  Future<void> pause() => _player.stop();
+  Future<void> pause() async {
+    await stopAudioSession();
+    _player.stop();
+  }
 
   @override
-  Future<void> stop() => _player.stop();
+  Future<void> stop() => pause();
 }
