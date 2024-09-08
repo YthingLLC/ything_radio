@@ -1,5 +1,7 @@
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+
+import 'Globals.dart';
+import 'ListenHandler.dart';
 
 class Listen extends StatelessWidget {
   const Listen({super.key});
@@ -26,27 +28,33 @@ class _PlayControlsState extends State<PlayControls>
 
   bool isPlaying = false;
 
-  late final AudioPlayer player;
+  //late final AudioPlayer player;
+
+  final ListenHandler _listenHandler = getListenHandlder();
 
   @override
-  void initState() {
+  initState() {
     super.initState();
 
-    player = AudioPlayer();
+    print("Listen init");
 
-    player.setReleaseMode(ReleaseMode.release);
+    //player = AudioPlayer();
 
-    player
-        .setSourceUrl("https://generic.ything.app/music/separation-185196.mp3");
+    //player.setReleaseMode(ReleaseMode.release);
+
+    //player
+    //    .setSourceUrl("https://generic.ything.app/music/separation-185196.mp3");
   }
 
   @override
   void dispose() {
     super.dispose();
 
-    player.stop();
+    //player.stop();
 
-    player.dispose();
+    //player.dispose();
+
+    _listenHandler.stop();
   }
 
   @override
@@ -54,9 +62,11 @@ class _PlayControlsState extends State<PlayControls>
     super.build(context);
 
     if (isPlaying) {
-      player.resume();
+      //player.resume();
+      _listenHandler.play();
     } else {
-      player.stop();
+      //player.stop();
+      _listenHandler.stop();
     }
     return ClipOval(
       child: Material(

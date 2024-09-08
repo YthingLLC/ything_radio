@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'Globals.dart';
 import 'YthingRadio.dart';
 
-void main() {
+Future<void> main() async {
+  setupListenHandler();
   runApp(const YthingRadio());
 }
