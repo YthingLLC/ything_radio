@@ -19,7 +19,11 @@ class PlayControls extends StatefulWidget {
   State<PlayControls> createState() => _PlayControlsState();
 }
 
-class _PlayControlsState extends State<PlayControls> {
+class _PlayControlsState extends State<PlayControls>
+    with AutomaticKeepAliveClientMixin {
+  @override
+  bool get wantKeepAlive => true;
+
   bool isPlaying = false;
 
   late final AudioPlayer player;
@@ -47,6 +51,8 @@ class _PlayControlsState extends State<PlayControls> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
     if (isPlaying) {
       player.resume();
     } else {
