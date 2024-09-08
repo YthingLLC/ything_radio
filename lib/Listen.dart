@@ -40,8 +40,13 @@ class _PlayControlsState extends State<PlayControls>
     print("Listen init");
 
     _listenHandler.playbackState.listen((PlaybackState event) {
+      if (isPlaying == event.playing) {
+        print("State unchanged, skipping setState()");
+        return;
+      }
       setState(() {
         isPlaying = event.playing;
+        print("Updated playing state to $isPlaying");
       });
     });
 
@@ -68,13 +73,20 @@ class _PlayControlsState extends State<PlayControls>
   Widget build(BuildContext context) {
     super.build(context);
 
+    print("Running build - Listen");
+
     if (isPlaying) {
       //player.resume();
       _listenHandler.play();
       _listenHandler.playbackState.add(PlaybackState(
         controls: [
           MediaControl.stop,
+          MediaControl.pause,
         ],
+        systemActions: {
+          MediaAction.stop,
+          MediaAction.pause,
+        },
         playing: true,
       ));
     } else {
@@ -82,6 +94,7 @@ class _PlayControlsState extends State<PlayControls>
       _listenHandler.stop();
       _listenHandler.playbackState.add(PlaybackState(
         controls: [],
+        systemActions: {},
         playing: false,
       ));
     }
