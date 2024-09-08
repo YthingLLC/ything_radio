@@ -21,19 +21,19 @@ class Links extends StatelessWidget {
         icon: TablerIcons.home,
       ),
     ),
-    EasyLinkWidget(
-      linkInfo: EasyLink(
-        uri: "http://",
-        displayText: "Link 3",
-        icon: TablerIcons.abc,
-      ),
-    ),
-    EasyLinkWidget(
-      linkInfo: EasyLink(
-          uri: "https://",
-          displayText: "Link 4",
-          icon: TablerIcons.brand_wikipedia),
-    ),
+    //EasyLinkWidget(
+    //  linkInfo: EasyLink(
+    //    uri: "http://",
+    //    displayText: "Link 3",
+    //    icon: TablerIcons.abc,
+    //  ),
+    //),
+    //EasyLinkWidget(
+    //  linkInfo: EasyLink(
+    //      uri: "https://",
+    //      displayText: "Link 4",
+    //      icon: TablerIcons.brand_wikipedia),
+    //),
   ];
 
   @override
