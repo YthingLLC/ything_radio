@@ -8,8 +8,10 @@ class ListenHandler extends BaseAudioHandler {
   setup_player() {
     _player.setReleaseMode(ReleaseMode.release);
 
-    _player
-        .setSourceUrl("https://generic.ything.app/music/separation-185196.mp3");
+    _player.setSourceUrl(
+      "https://generic.ything.app/music/separation-185196.mp3",
+      mimeType: "audio/mpeg",
+    );
   }
 
   ListenHandler() {
