@@ -4,6 +4,6 @@ import 'Globals.dart';
 import 'YthingRadio.dart';
 
 Future<void> main() async {
-  setupListenHandler();
+  await setupListenHandler();
   runApp(const YthingRadio());
 }

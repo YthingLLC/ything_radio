@@ -1,3 +1,4 @@
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
 
 import 'Globals.dart';
@@ -38,6 +39,12 @@ class _PlayControlsState extends State<PlayControls>
 
     print("Listen init");
 
+    _listenHandler.playbackState.listen((PlaybackState event) {
+      setState(() {
+        isPlaying = event.playing;
+      });
+    });
+
     //player = AudioPlayer();
 
     //player.setReleaseMode(ReleaseMode.release);
@@ -64,9 +71,19 @@ class _PlayControlsState extends State<PlayControls>
     if (isPlaying) {
       //player.resume();
       _listenHandler.play();
+      _listenHandler.playbackState.add(PlaybackState(
+        controls: [
+          MediaControl.stop,
+        ],
+        playing: true,
+      ));
     } else {
       //player.stop();
       _listenHandler.stop();
+      _listenHandler.playbackState.add(PlaybackState(
+        controls: [],
+        playing: false,
+      ));
     }
     return ClipOval(
       child: Material(
