@@ -37,3 +37,8 @@ jobs:
         name: flutter-windows-build-latest
         path: build/windows/x64/runner
         if-no-files-found: error
+
+    - name: Build MSIX for Windows
+      run: dart run msix:create
+
+
