@@ -1,5 +1,8 @@
-import 'package:audioplayers/audioplayers.dart';
+import 'package:audio_service/audio_service.dart';
 import 'package:flutter/material.dart';
+
+import 'Globals.dart';
+import 'ListenHandler.dart';
 
 class Listen extends StatelessWidget {
   const Listen({super.key});
@@ -26,13 +29,7 @@ class _PlayControlsState extends State<PlayControls>
 
   bool isPlaying = false;
 
-  late final AudioPlayer player;
-
-  //final ListenHandler _listenHandler = getListenHandlder();
-
-  final UrlSource _radioSource = UrlSource(
-      "https://generic.ything.app/music/separation-185196.mp3",
-      mimeType: "audio/mpeg");
+  final ListenHandler _listenHandler = getListenHandlder();
 
   @override
   initState() {
@@ -40,34 +37,23 @@ class _PlayControlsState extends State<PlayControls>
 
     print("Listen init");
 
-    //_listenHandler.playbackState.listen((PlaybackState event) {
-    //  if (isPlaying == event.playing) {
-    //    print("State unchanged, skipping setState()");
-    //    return;
-    //  }
-    //  setState(() {
-    //    isPlaying = event.playing;
-    //    print("Updated playing state to $isPlaying");
-    //  });
-    //});
-
-    player = AudioPlayer();
-
-    player.setReleaseMode(ReleaseMode.release);
-
-    //player
-    //    .setSourceUrl("https://generic.ything.app/music/separation-185196.mp3");
+    _listenHandler.playbackState.listen((PlaybackState event) {
+      if (isPlaying == event.playing) {
+        print("State unchanged, skipping setState()");
+        return;
+      }
+      setState(() {
+        isPlaying = event.playing;
+        print("Updated playing state to $isPlaying");
+      });
+    });
   }
 
   @override
   void dispose() {
     super.dispose();
 
-    //player.stop();
-
-    //player.dispose();
-
-    //_listenHandler.stop();
+    _listenHandler.stop();
   }
 
   @override
@@ -77,28 +63,25 @@ class _PlayControlsState extends State<PlayControls>
     print("Running build - Listen");
 
     if (isPlaying) {
-      player.play(_radioSource, mode: PlayerMode.mediaPlayer);
-      //player.resume();
-      //_listenHandler.play();
-      //_listenHandler.playbackState.add(PlaybackState(
-      //  controls: [
-      //    MediaControl.stop,
-      //    MediaControl.pause,
-      //  ],
-      //  systemActions: {
-      //    MediaAction.stop,
-      //    MediaAction.pause,
-      //  },
-      //  playing: true,
-      //));
+      _listenHandler.play();
+      _listenHandler.playbackState.add(PlaybackState(
+        controls: [
+          MediaControl.stop,
+          MediaControl.pause,
+        ],
+        systemActions: {
+          MediaAction.stop,
+          MediaAction.pause,
+        },
+        playing: true,
+      ));
     } else {
-      player.stop();
-      //_listenHandler.stop();
-      //_listenHandler.playbackState.add(PlaybackState(
-      //  controls: [],
-      //  systemActions: {},
-      //  playing: false,
-      //));
+      _listenHandler.stop();
+      _listenHandler.playbackState.add(PlaybackState(
+        controls: [],
+        systemActions: {},
+        playing: false,
+      ));
     }
     return ClipOval(
       child: Material(

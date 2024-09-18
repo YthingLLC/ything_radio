@@ -5,13 +5,12 @@ import 'package:ything_radio/Globals.dart';
 class ListenHandler extends BaseAudioHandler {
   final _player = AudioPlayer();
 
+  final UrlSource _radioSource = UrlSource(
+      "https://generic.ything.app/music/separation-185196.mp3",
+      mimeType: "audio/mpeg");
+
   setup_player() {
     _player.setReleaseMode(ReleaseMode.release);
-
-    _player.setSourceUrl(
-      "https://generic.ything.app/music/separation-185196.mp3",
-      mimeType: "audio/mpeg",
-    );
   }
 
   ListenHandler() {
@@ -21,7 +20,7 @@ class ListenHandler extends BaseAudioHandler {
   @override
   Future<void> play() async {
     if (await startAudioSession()) {
-      _player.resume();
+      _player.play(_radioSource, mode: PlayerMode.mediaPlayer);
     }
   }
 
