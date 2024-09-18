@@ -70,3 +70,5 @@ jobs:
         accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         projectName: ything-radio
         directory: build/web
+        # push directly to "production" on cloudflare pages
+        branch: main
