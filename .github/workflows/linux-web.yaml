@@ -62,3 +62,11 @@ jobs:
         name: flutter-web-build-latest
         path: build/web
         if-no-files-found: error
+
+    - name: Publish to Cloudflare Pages
+      uses: cloudflare/pages-action@v1
+      with:
+        apiToken: ${{ secrets.CLOUDFLARE_PAGES_DEPLOY }}
+        accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        projectName: ything-radio
+        directory: build/web
