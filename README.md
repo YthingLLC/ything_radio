@@ -16,7 +16,7 @@ This app has been designed to run across all platforms!
 - MacOS
 - Windows
 - Linux
-- Web
+- Web ([Live Demo](https://radio-demo.ything.app/))
 
 Provide a single unified experience across *all* platforms for your users!
 
@@ -27,5 +27,4 @@ Coming Soon:
 - Apple App Store Live Demo!
 - Google Play Store Live Demo!
 - Windows portable exe
-- Web based live demo
 - Screenshots / Demo Videos
