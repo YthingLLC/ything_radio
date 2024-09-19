@@ -9,8 +9,17 @@ class Listen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: PlayControls(),
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/app-background.jpg'),
+          fit: BoxFit.cover,
+          opacity: 0.4,
+        ),
+      ),
+      child: const Center(
+        child: PlayControls(),
+      ),
     );
   }
 }

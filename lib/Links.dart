@@ -38,12 +38,21 @@ class Links extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DefaultTextStyle(
-      style: Theme.of(context).textTheme.headlineSmall!,
-      child: SafeZone(
-        child: Center(
-          child: Column(
-            children: links.map((link) => link).toList(),
+    return Container(
+      decoration: const BoxDecoration(
+        image: DecorationImage(
+          image: AssetImage('assets/images/app-background3.jpg'),
+          fit: BoxFit.cover,
+          opacity: 0.4,
+        ),
+      ),
+      child: DefaultTextStyle(
+        style: Theme.of(context).textTheme.headlineSmall!,
+        child: SafeZone(
+          child: Center(
+            child: Column(
+              children: links.map((link) => link).toList(),
+            ),
           ),
         ),
       ),
