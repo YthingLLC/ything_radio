@@ -37,7 +37,7 @@ jobs:
       run: flutter build linux
 
     - name: Build for Android
-      run: flutter build appbundle
+      run: flutter build appbundle --debug
 
     - name: Build for web
       run: flutter build web --no-web-resources-cdn --csp --web-renderer canvaskit
