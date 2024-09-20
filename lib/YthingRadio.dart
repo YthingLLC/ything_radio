@@ -10,6 +10,7 @@ class YthingRadio extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Ything Radio',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(
           seedColor: Colors.orange,
