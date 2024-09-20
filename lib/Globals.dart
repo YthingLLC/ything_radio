@@ -17,6 +17,36 @@ Future<void> setupListenHandler() async {
   _session = await AudioSession.instance;
 
   await _session.configure(const AudioSessionConfiguration.music());
+
+  //TODO: Do I need to handle these events? audioplayers may be doing it already
+  //_session.interruptionEventStream.listen((event) {
+  //  if (event.begin) {
+  //    switch (event.type) {
+  //      case AudioInterruptionType.duck:
+  //        _listenHandler.duck();
+  //        break;
+  //      case AudioInterruptionType.pause:
+  //      case AudioInterruptionType.unknown:
+  //        _listenHandler.pause();
+  //        break;
+  //    }
+  //  } else {
+  //    switch (event.type) {
+  //      case AudioInterruptionType.duck:
+  //        _listenHandler.unDuck();
+  //        break;
+  //      case AudioInterruptionType.pause:
+  //        _listenHandler.play();
+  //        break;
+  //      case AudioInterruptionType.unknown:
+  //        break;
+  //    }
+  //  }
+  //});
+
+  //_session.becomingNoisyEventStream.listen((_) {
+  //  _listenHandler.pause();
+  //});
 }
 
 ListenHandler getListenHandlder() => _listenHandler;

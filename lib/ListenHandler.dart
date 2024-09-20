@@ -11,6 +11,35 @@ class ListenHandler extends BaseAudioHandler {
 
   setup_player() {
     _player.setReleaseMode(ReleaseMode.release);
+    _player.onPlayerStateChanged.listen((event) {
+      print("Received audioplayers event: $event");
+
+      switch (event) {
+        case PlayerState.playing:
+          super.playbackState.add(PlaybackState(
+                controls: [
+                  MediaControl.stop,
+                  MediaControl.pause,
+                ],
+                systemActions: {
+                  MediaAction.stop,
+                  MediaAction.pause,
+                },
+                playing: true,
+              ));
+          break;
+        case PlayerState.paused:
+        case PlayerState.stopped:
+        case PlayerState.completed:
+        case PlayerState.disposed:
+          super.playbackState.add(PlaybackState(
+                controls: [],
+                systemActions: {},
+                playing: false,
+              ));
+          break;
+      }
+    });
   }
 
   ListenHandler() {
@@ -19,31 +48,31 @@ class ListenHandler extends BaseAudioHandler {
 
   bool isPlaying() => super.playbackState.value.playing;
 
+  double _duckVol = 0;
+
+  void duck() {
+    //TODO: Confirm I need to do this manually, it looks like audioplayers already does this
+    print("Duck requested");
+    //_duckVol = _player.volume;
+
+    //_player.setVolume(_duckVol - 0.4 > 0 ? _duckVol - 0.4 : 0.0);
+  }
+
+  void unDuck() {
+    //TODO: Confirm I need to do this manually, it looks like audioplayers already does this
+    print("Unduck requested");
+    //_player.setVolume(_duckVol);
+  }
+
   @override
   Future<void> play() async {
     if (await startAudioSession()) {
       _player.play(_radioSource, mode: PlayerMode.mediaPlayer);
-      super.playbackState.add(PlaybackState(
-            controls: [
-              MediaControl.stop,
-              MediaControl.pause,
-            ],
-            systemActions: {
-              MediaAction.stop,
-              MediaAction.pause,
-            },
-            playing: true,
-          ));
     }
   }
 
   @override
   Future<void> pause() async {
-    super.playbackState.add(PlaybackState(
-          controls: [],
-          systemActions: {},
-          playing: false,
-        ));
     await stopAudioSession();
     _player.stop();
   }

@@ -45,6 +45,7 @@ class _PlayControlsState extends State<PlayControls>
     print("Listen init");
 
     _listenHandler.playbackState.listen((PlaybackState state) {
+      print("Playback state changed");
       setState(() {});
     });
   }
