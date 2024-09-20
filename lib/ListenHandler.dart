@@ -17,15 +17,33 @@ class ListenHandler extends BaseAudioHandler {
     setup_player();
   }
 
+  bool isPlaying() => super.playbackState.value.playing;
+
   @override
   Future<void> play() async {
     if (await startAudioSession()) {
       _player.play(_radioSource, mode: PlayerMode.mediaPlayer);
+      super.playbackState.add(PlaybackState(
+            controls: [
+              MediaControl.stop,
+              MediaControl.pause,
+            ],
+            systemActions: {
+              MediaAction.stop,
+              MediaAction.pause,
+            },
+            playing: true,
+          ));
     }
   }
 
   @override
   Future<void> pause() async {
+    super.playbackState.add(PlaybackState(
+          controls: [],
+          systemActions: {},
+          playing: false,
+        ));
     await stopAudioSession();
     _player.stop();
   }

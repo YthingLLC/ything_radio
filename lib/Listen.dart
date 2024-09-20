@@ -36,8 +36,6 @@ class _PlayControlsState extends State<PlayControls>
   @override
   bool get wantKeepAlive => true;
 
-  bool isPlaying = false;
-
   final ListenHandler _listenHandler = getListenHandlder();
 
   @override
@@ -46,15 +44,8 @@ class _PlayControlsState extends State<PlayControls>
 
     print("Listen init");
 
-    _listenHandler.playbackState.listen((PlaybackState event) {
-      if (isPlaying == event.playing) {
-        print("State unchanged, skipping setState()");
-        return;
-      }
-      setState(() {
-        isPlaying = event.playing;
-        print("Updated playing state to $isPlaying");
-      });
+    _listenHandler.playbackState.listen((PlaybackState state) {
+      setState(() {});
     });
   }
 
@@ -65,48 +56,33 @@ class _PlayControlsState extends State<PlayControls>
     _listenHandler.stop();
   }
 
+  Future<void> playPause() async {
+    print("playPause called");
+    _listenHandler.isPlaying()
+        ? await _listenHandler.stop()
+        : await _listenHandler.play();
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
 
     print("Running build - Listen");
 
-    if (isPlaying) {
-      _listenHandler.play();
-      _listenHandler.playbackState.add(PlaybackState(
-        controls: [
-          MediaControl.stop,
-          MediaControl.pause,
-        ],
-        systemActions: {
-          MediaAction.stop,
-          MediaAction.pause,
-        },
-        playing: true,
-      ));
-    } else {
-      _listenHandler.stop();
-      _listenHandler.playbackState.add(PlaybackState(
-        controls: [],
-        systemActions: {},
-        playing: false,
-      ));
-    }
     return ClipOval(
       child: Material(
         color: Theme.of(context).colorScheme.primaryContainer,
         child: InkWell(
           splashColor: Theme.of(context).colorScheme.onPrimaryContainer,
-          onTap: () {
-            setState(() {
-              isPlaying = !isPlaying;
-            });
+          onTap: () async {
+            await playPause();
+            setState(() {});
           },
           child: SizedBox(
             width: 100,
             height: 100,
             child: Icon(
-              isPlaying ? Icons.stop : Icons.play_arrow,
+              _listenHandler.isPlaying() ? Icons.stop : Icons.play_arrow,
               color: Colors.white,
               size: 50,
             ),
