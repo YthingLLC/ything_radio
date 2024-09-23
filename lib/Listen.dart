@@ -36,6 +36,8 @@ class _PlayControlsState extends State<PlayControls>
   @override
   bool get wantKeepAlive => true;
 
+  bool _isLoading = false;
+
   final ListenHandler _listenHandler = getListenHandlder();
 
   @override
@@ -46,7 +48,11 @@ class _PlayControlsState extends State<PlayControls>
 
     _listenHandler.playbackState.listen((PlaybackState state) {
       print("Playback state changed");
-      setState(() {});
+      setState(() {
+        //if state changed, we're no longer loading!
+        //doesn't matter if we're playing or not!
+        _isLoading = false;
+      });
     });
   }
 
@@ -76,14 +82,26 @@ class _PlayControlsState extends State<PlayControls>
         child: InkWell(
           splashColor: Theme.of(context).colorScheme.onPrimaryContainer,
           onTap: () async {
+            if (_isLoading) {
+              //skip doing anything else if we're still loading...
+              return;
+            }
             await playPause();
-            setState(() {});
+            setState(() {
+              if (!_listenHandler.isPlaying()) {
+                _isLoading = true;
+              }
+            });
           },
           child: SizedBox(
             width: 100,
             height: 100,
             child: Icon(
-              _listenHandler.isPlaying() ? Icons.stop : Icons.play_arrow,
+              _isLoading
+                  ? Icons.hourglass_empty
+                  : _listenHandler.isPlaying()
+                      ? Icons.stop
+                      : Icons.play_arrow,
               color: Colors.white,
               size: 50,
             ),
