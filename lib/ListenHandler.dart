@@ -5,9 +5,7 @@ import 'package:ything_radio/Globals.dart';
 class ListenHandler extends BaseAudioHandler {
   final _player = AudioPlayer();
 
-  final UrlSource _radioSource = UrlSource(
-      "https://generic.ything.app/music/separation-185196.mp3",
-      mimeType: "audio/mpeg");
+  final UrlSource _radioSource = getUrlSource();
 
   setup_player() {
     _player.setReleaseMode(ReleaseMode.release);

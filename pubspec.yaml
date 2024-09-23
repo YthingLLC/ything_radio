@@ -40,6 +40,7 @@ dependencies:
   flutter_tabler_icons: ^1.38.0
   audio_service: ^0.18.15
   audio_session: ^0.1.21
+  http: ^1.2.2
 
 dev_dependencies:
   flutter_test:
