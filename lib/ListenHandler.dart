@@ -79,4 +79,11 @@ class ListenHandler extends BaseAudioHandler {
 
   @override
   Future<void> stop() => pause();
+
+  //make appo stop playing when swiped away in task manager on Android
+  @override
+  Future<void> onTaskRemoved() async {
+    await stop();
+    return super.onTaskRemoved();
+  }
 }
