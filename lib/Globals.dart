@@ -8,7 +8,7 @@ import 'ListenHandler.dart';
 late final ListenHandler _listenHandler;
 late final AudioSession _session;
 
-final String _fallback =
+const String _fallback =
     "https://generic.ything.app/music/separation-185196.mp3";
 final _urlSource = Uri.parse("https://generic.ything.app/music/player.url");
 late final String _radioUrl;
@@ -17,11 +17,32 @@ Future<void> loadCurrentUrl() async {
   final resp = await http.get(_urlSource);
   if (resp.statusCode == 200) {
     _radioUrl = resp.body.trim();
+    print('Loaded remote url');
   } else {
     _radioUrl = _fallback;
-    print('Request for current streaming url failed');
+    print('Request for current streaming url failed, using fallback url');
   }
 }
+
+const String _fallbackAbout =
+    "Ything Radio is an internet radio streaming application.";
+final _urlAbout =
+    Uri.parse("https://generic.ything.app/ything_radio/about.txt");
+late final String _remoteAbout;
+
+Future<void> loadAboutUrl() async {
+  final resp = await http.get(_urlAbout);
+
+  if (resp.statusCode == 200) {
+    _remoteAbout = resp.body;
+    print('Loaded remote about');
+  } else {
+    _remoteAbout = _fallbackAbout;
+    print('Request for remote about failed, using fallback about');
+  }
+}
+
+String getAboutText() => _remoteAbout;
 
 Future<void> setupListenHandler() async {
   _listenHandler = await AudioService.init(
