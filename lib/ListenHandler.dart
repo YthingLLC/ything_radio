@@ -65,6 +65,8 @@ class ListenHandler extends BaseAudioHandler {
   @override
   Future<void> play() async {
     if (await startAudioSession()) {
+      //setSource followed by resume does not work on Android or web
+      //play works everywhere though
       _player.play(_radioSource, mode: PlayerMode.mediaPlayer);
     }
   }
