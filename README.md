@@ -11,8 +11,8 @@ or to facilitate user input for internet radio sites.
 
 This app has been designed to run across all platforms!
 
-- Android
-- iOS
+- Android ([Google Play Store](https://play.google.com/store/apps/details?id=net.ything.radio.android))
+- iOS (Requires [TestFlight](https://itunes.apple.com/us/app/testflight/id899247664?mt=8), contact info@ything.app for invitation)
 - MacOS
 - Windows
 - Linux
@@ -25,6 +25,5 @@ Want to have us modify this app for you? Reach out to info@ything.app
 Coming Soon:
 
 - Apple App Store Live Demo!
-- Google Play Store Live Demo!
 - Windows portable exe
 - Screenshots / Demo Videos
