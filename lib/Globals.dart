@@ -4,6 +4,7 @@ import 'package:audio_service/audio_service.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:http/http.dart' as http;
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 import 'ListenHandler.dart';
 
@@ -37,7 +38,7 @@ final _urlAboutIOS =
 late final String _remoteAbout;
 
 Future<void> loadAboutUrl() async {
-  final resp = await http.get(Platform.isIOS ? _urlAboutIOS : _urlAbout);
+  final resp = await http.get(kIsWeb || !Platform.isIOS ? _urlAbout : _urlAboutIOS);
 
   if (resp.statusCode == 200) {
     _remoteAbout = resp.body;
