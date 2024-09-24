@@ -1,3 +1,5 @@
+import 'dart:io' show Platform;
+
 import 'package:audio_service/audio_service.dart';
 import 'package:audio_session/audio_session.dart';
 import 'package:audioplayers/audioplayers.dart';
@@ -28,10 +30,14 @@ const String _fallbackAbout =
     "Ything Radio is an internet radio streaming application.";
 final _urlAbout =
     Uri.parse("https://generic.ything.app/ything_radio/about.txt");
+
+final _urlAboutIOS =
+    Uri.parse("https://generic.ything.app/ything_radio/about_ios.txt");
+
 late final String _remoteAbout;
 
 Future<void> loadAboutUrl() async {
-  final resp = await http.get(_urlAbout);
+  final resp = await http.get(Platform.isIOS ? _urlAboutIOS : _urlAbout);
 
   if (resp.statusCode == 200) {
     _remoteAbout = resp.body;
