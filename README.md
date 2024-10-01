@@ -12,7 +12,7 @@ or to facilitate user input for internet radio sites.
 This app has been designed to run across all platforms!
 
 - Android ([Google Play Store](https://play.google.com/store/apps/details?id=net.ything.radio.android))
-- iOS ([App Store](https://apps.apple.com/us/app/ything-radio/id6701998815)
+- iOS ([App Store](https://apps.apple.com/us/app/ything-radio/id6701998815))
 - MacOS ([dmg](https://generic.ything.app/ything_radio/2024_0923_ything_radio.dmg))
 - Windows
 - Linux
