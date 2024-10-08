@@ -5,8 +5,6 @@ import 'package:ything_radio/Globals.dart';
 class ListenHandler extends BaseAudioHandler {
   final _player = AudioPlayer();
 
-  final UrlSource _radioSource = getUrlSource();
-
   setup_player() {
     _player.setReleaseMode(ReleaseMode.release);
     _player.onPlayerStateChanged.listen((event) {
@@ -64,10 +62,22 @@ class ListenHandler extends BaseAudioHandler {
 
   @override
   Future<void> play() async {
+    print('Starting playback');
     if (await startAudioSession()) {
-      //setSource followed by resume does not work on Android or web
-      //play works everywhere though
-      _player.play(_radioSource, mode: PlayerMode.mediaPlayer);
+      try {
+        //setSource followed by resume does not work on Android or web
+        //play works everywhere though
+        await _player.play(await getSource(), mode: PlayerMode.mediaPlayer);
+      } catch (e) {
+        print("Exception $e - loading fallback");
+        try {
+          await _player.play(await getSource(fallback: true),
+              mode: PlayerMode.mediaPlayer);
+        } catch (e) {
+          print("Exception $e - playing internet connectivity problem");
+          await _player.play(getInternetError());
+        }
+      }
     }
   }
 

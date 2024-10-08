@@ -73,6 +73,8 @@ flutter:
     - assets/images/app-background.jpg
     - assets/images/app-background2.jpg
     - assets/images/app-background3.jpg
+    - assets/images/app-background4.jpg
+    - assets/audio/internet_error.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
