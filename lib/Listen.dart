@@ -86,12 +86,12 @@ class _PlayControlsState extends State<PlayControls>
               //skip doing anything else if we're still loading...
               return;
             }
-            await playPause();
             setState(() {
               if (!_listenHandler.isPlaying()) {
                 _isLoading = true;
               }
             });
+            await playPause();
           },
           child: SizedBox(
             width: 100,
