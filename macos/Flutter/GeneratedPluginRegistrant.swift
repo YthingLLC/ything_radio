@@ -9,7 +9,7 @@ import audio_service
 import audio_session
 import audioplayers_darwin
 import path_provider_foundation
-import sqflite
+import sqflite_darwin
 import url_launcher_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
